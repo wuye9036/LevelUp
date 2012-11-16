@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gis2007", "gis2007\gis2007.vcproj", "{D94169D2-2131-4BA7-8641-3DDB4265185E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenMPProfiler", "OpenMPProfiler\OpenMPProfiler.vcproj", "{2F96861C-6B0B-46CC-944F-DB1EB2FDA484}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CPUKerneProfiler", "CPUKerneProfiler\CPUKerneProfiler.vcproj", "{CB02E114-2BEC-44B0-870D-1FE8D2AB0476}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PerformBench", "PerformBench\PerformBench.vcproj", "{4D28B9D8-627A-440F-A72B-199FC1DC0E68}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		MR_Release|Win32 = MR_Release|Win32
+		NH_Release|Win32 = NH_Release|Win32
+		Release|Win32 = Release|Win32
+		Saxpy_Release|Win32 = Saxpy_Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D94169D2-2131-4BA7-8641-3DDB4265185E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D94169D2-2131-4BA7-8641-3DDB4265185E}.Debug|Win32.Build.0 = Debug|Win32
+		{D94169D2-2131-4BA7-8641-3DDB4265185E}.MR_Release|Win32.ActiveCfg = MR_Release|Win32
+		{D94169D2-2131-4BA7-8641-3DDB4265185E}.MR_Release|Win32.Build.0 = MR_Release|Win32
+		{D94169D2-2131-4BA7-8641-3DDB4265185E}.NH_Release|Win32.ActiveCfg = NH_Release|Win32
+		{D94169D2-2131-4BA7-8641-3DDB4265185E}.NH_Release|Win32.Build.0 = NH_Release|Win32
+		{D94169D2-2131-4BA7-8641-3DDB4265185E}.Release|Win32.ActiveCfg = Release|Win32
+		{D94169D2-2131-4BA7-8641-3DDB4265185E}.Release|Win32.Build.0 = Release|Win32
+		{D94169D2-2131-4BA7-8641-3DDB4265185E}.Saxpy_Release|Win32.ActiveCfg = Saxpy_Release|Win32
+		{D94169D2-2131-4BA7-8641-3DDB4265185E}.Saxpy_Release|Win32.Build.0 = Saxpy_Release|Win32
+		{2F96861C-6B0B-46CC-944F-DB1EB2FDA484}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2F96861C-6B0B-46CC-944F-DB1EB2FDA484}.MR_Release|Win32.ActiveCfg = MR_Release|Win32
+		{2F96861C-6B0B-46CC-944F-DB1EB2FDA484}.NH_Release|Win32.ActiveCfg = NH_Release|Win32
+		{2F96861C-6B0B-46CC-944F-DB1EB2FDA484}.Release|Win32.ActiveCfg = Release|Win32
+		{2F96861C-6B0B-46CC-944F-DB1EB2FDA484}.Saxpy_Release|Win32.ActiveCfg = Saxpy_Release|Win32
+		{CB02E114-2BEC-44B0-870D-1FE8D2AB0476}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CB02E114-2BEC-44B0-870D-1FE8D2AB0476}.MR_Release|Win32.ActiveCfg = MR_Release|Win32
+		{CB02E114-2BEC-44B0-870D-1FE8D2AB0476}.NH_Release|Win32.ActiveCfg = NH_Release|Win32
+		{CB02E114-2BEC-44B0-870D-1FE8D2AB0476}.Release|Win32.ActiveCfg = Release|Win32
+		{CB02E114-2BEC-44B0-870D-1FE8D2AB0476}.Saxpy_Release|Win32.ActiveCfg = Saxpy_Release|Win32
+		{4D28B9D8-627A-440F-A72B-199FC1DC0E68}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4D28B9D8-627A-440F-A72B-199FC1DC0E68}.MR_Release|Win32.ActiveCfg = MR_Release|Win32
+		{4D28B9D8-627A-440F-A72B-199FC1DC0E68}.NH_Release|Win32.ActiveCfg = NH_Release|Win32
+		{4D28B9D8-627A-440F-A72B-199FC1DC0E68}.Release|Win32.ActiveCfg = Release|Win32
+		{4D28B9D8-627A-440F-A72B-199FC1DC0E68}.Release|Win32.Build.0 = Release|Win32
+		{4D28B9D8-627A-440F-A72B-199FC1DC0E68}.Saxpy_Release|Win32.ActiveCfg = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

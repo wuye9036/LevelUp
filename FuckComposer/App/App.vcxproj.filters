@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{bcecd156-7a0f-4321-b710-20c56582b558}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{658864d2-c2df-484d-877c-c140fa02219c}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{2f740c2f-9326-4cd5-97a8-e2dc277f4cf4}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;jpg;jpeg;jpe;manifest</Extensions>
+    </Filter>
+    <Filter Include="Effect">
+      <UniqueIdentifier>{e1c058a3-d081-4701-8f89-13eaeb5ceb30}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="App.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShadowMapApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AppView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AboutDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShadowMapApp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="App.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\toolbar.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\App.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Test.fx">
+      <Filter>Effect</Filter>
+    </None>
+  </ItemGroup>
+</Project>

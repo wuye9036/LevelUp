@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual C++ Express 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MultiThreadPrac", "MultiThreadPrac\MultiThreadPrac.vcproj", "{786A770E-060C-426A-9A80-B75F479C7A6B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReadWriteCondLock", "ReadWriteCondLock\ReadWriteCondLock.vcproj", "{BF63C8A9-DDA5-4A3C-A411-6A9E656B85CC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ConcurrentProgrammingTest", "ConcurrentProgrammingTest\ConcurrentProgrammingTest.vcproj", "{8C7A17FF-0367-46B5-B1DE-BE1E37948830}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{786A770E-060C-426A-9A80-B75F479C7A6B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{786A770E-060C-426A-9A80-B75F479C7A6B}.Debug|Win32.Build.0 = Debug|Win32
+		{786A770E-060C-426A-9A80-B75F479C7A6B}.Release|Win32.ActiveCfg = Release|Win32
+		{786A770E-060C-426A-9A80-B75F479C7A6B}.Release|Win32.Build.0 = Release|Win32
+		{BF63C8A9-DDA5-4A3C-A411-6A9E656B85CC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BF63C8A9-DDA5-4A3C-A411-6A9E656B85CC}.Debug|Win32.Build.0 = Debug|Win32
+		{BF63C8A9-DDA5-4A3C-A411-6A9E656B85CC}.Release|Win32.ActiveCfg = Release|Win32
+		{BF63C8A9-DDA5-4A3C-A411-6A9E656B85CC}.Release|Win32.Build.0 = Release|Win32
+		{8C7A17FF-0367-46B5-B1DE-BE1E37948830}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8C7A17FF-0367-46B5-B1DE-BE1E37948830}.Debug|Win32.Build.0 = Debug|Win32
+		{8C7A17FF-0367-46B5-B1DE-BE1E37948830}.Release|Win32.ActiveCfg = Release|Win32
+		{8C7A17FF-0367-46B5-B1DE-BE1E37948830}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

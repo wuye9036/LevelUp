@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<TESTSUITE name="math_test_suite">
+    <TESTCASE name="vec_test_case" testCount="1" successTestCount="0" failureTestCount="1">
+        <TESTMETHOD name="normalize_test" testItemCount="2" passedItemCount="1" failedItemCount="1">
+            <TEST>
+                <CONTENT>length(v) == 1.0f</CONTENT>
+                <ISPASS>False</ISPASS>
+            </TEST>
+            <TEST>
+                <CONTENT>length(v) is in 1.0f|+/-|0.001f</CONTENT>
+                <ISPASS>True</ISPASS>
+            </TEST>
+        </TESTMETHOD>
+    </TESTCASE>
+</TESTSUITE>
