@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sasl_test", "sasl_test.vcproj", "{E57730F8-3A3D-4476-9036-810BCA9E9475}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PaserUpdater", "PaserUpdater.vcproj", "{0329334B-28A6-47BF-9831-8B547FF16BB7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E57730F8-3A3D-4476-9036-810BCA9E9475} = {E57730F8-3A3D-4476-9036-810BCA9E9475}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E57730F8-3A3D-4476-9036-810BCA9E9475}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E57730F8-3A3D-4476-9036-810BCA9E9475}.Debug|Win32.Build.0 = Debug|Win32
+		{E57730F8-3A3D-4476-9036-810BCA9E9475}.Release|Win32.ActiveCfg = Release|Win32
+		{E57730F8-3A3D-4476-9036-810BCA9E9475}.Release|Win32.Build.0 = Release|Win32
+		{0329334B-28A6-47BF-9831-8B547FF16BB7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0329334B-28A6-47BF-9831-8B547FF16BB7}.Debug|Win32.Build.0 = Debug|Win32
+		{0329334B-28A6-47BF-9831-8B547FF16BB7}.Release|Win32.ActiveCfg = Release|Win32
+		{0329334B-28A6-47BF-9831-8B547FF16BB7}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,34 @@
+# depslib dependency file v1.0
+1217005728 source:f:\wuye\flex&bison\lex.yy.c
+	<stdio.h>
+	<string.h>
+	<errno.h>
+	<stdlib.h>
+	<inttypes.h>
+	<unistd.h>
+
+1218289774 source:f:\wuye\flexsandbox\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	"gram.tab.c"
+
+1217010294 source:f:\wuye\flexsandbox\integer.l.c
+	<stdio.h>
+	<string.h>
+	<errno.h>
+	<stdlib.h>
+	<inttypes.h>
+	<math.h>
+	<unistd.h>
+
+1218291914 f:\wuye\flexsandbox\gram.tab.c
+	<math.h>
+	<stddef.h>
+	<libintl.h>
+	<alloca.h>
+	<malloc.h>
+	<stdlib.h>
+	<stdlib.h>
+	<stdio.h>
+

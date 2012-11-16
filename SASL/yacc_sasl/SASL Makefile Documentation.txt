@@ -1,0 +1,32 @@
+说明：
+MakeFile.SASL.xml 为 saslc 的编译配置文件， XML格式。
+
+MakeFile.SASL.xml XML节点（以下在不引起歧义的情况下简称节点）描述：
+	Makefile :	配置文件的根元素。有且只有一个。
+		Configuration : 一个Configuration节点为一套完整的配置。可以在一个文件内部定义多套配置。
+			WorkEnv : 工作环境的设置。每个Configuration下只能有一个WorkEnv节点。
+				SearchDirs : 附加搜索目录，通常为 include 搜索的附加目录。WorkEnv下只能有一个节点。
+					Dir : 搜索目录。SearchDirs下可以有多个搜索目录。
+			CompileFlags : 编译器所需要的编译参数。Configuration 下只能有一个节点。
+				FlagGroup : 编译器参数组。该节点为其它Flag的容器，但是是作为可选存在，有利于多个配置的复用。
+				Flag : 编译器参数。可以在CompileFlag或FlagGroup下，可存在多个。param属性必须定义，value属性可选。
+			Input : 输入文件。每个Configuration下有且仅有一个
+				File : 如果没有指定绝对路径，则在WorkEnv下搜索相对路径。如果有冲突，则按照工作目录->WorkEnv中的次序确定首个出现的文件。
+
+Attributes And Constraints：
+	公共可选属性：
+		id : 每个文件中同类型节点里唯一的全局标识符。为任一字串。
+		ref : 可以引用ref所指明的节点值作为当前节点的值。为一XPath路径或id。如果为XPath，需要设置ref-type。ref的节点必须与当前节点同类型中查找。ref的节点仍然可以设置值，新值将覆盖ref而来的值。
+		ref-file : 文件的相对或绝对路径。如果有至少一个WorkEnv->SearchDirs->Dir被设置，那么之前的SearchDir均可作为link的查找目录。否则为当前目录。该属性需要和ref共用，表示从其他文件中引入节点值。
+		ref-type : 引用的类型。需要设置ref后该选项方可生效。可选项为XPath或ID。
+		
+	其他部分节点属性：
+		可选节点		属性			选择		含义
+		Flag				param		必选		编译器的参数名称。
+		Flag				value		可选		为param的值。部分compile flag，无须设置该值。
+		
+Compile Flags：
+	编译器参数（简写）				值
+	output(o)							输出文件的名称。如果未指定，则以 “当前目录名.out”作为默认名称。
+	target-type(tt)					编译目标类型，可选cpp, log, fx, bin。
+	define(d)							预处理器使用的Predefine。多项可用分号隔开。例如"LIGHT_ENABLE;TEXTURE_DISABLE"

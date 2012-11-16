@@ -1,0 +1,275 @@
+//SASL: SoftArt Shader Language
+
+Syntax
+
+Program             ::= DeclSeq
+
+//////////////////////////////////
+//Declaration
+//////////////////////////////////
+DeclSeq             ::= Decl | 
+                        DeclSeq Decl
+                        
+Decl                ::= BlockDecl |
+                        FunctioDef
+
+Declarator          ::=    DirectDecl [SemanticSpec] [RegisterSpec]
+
+DirectDecl          ::=    DeclId |
+                        DirectDecl '(' ParamDeclClause ')'|
+                        DirectDecl '[' [ConstExp] ']'|
+                        '(' Declarator ')'
+
+CvQualifierSeq      ::= CvQualifier [CvQualifierSeq]
+
+CvQualifier         ::= 'const' | 'uniform'
+
+SemanticSpec        ::= ':' Semantic
+
+RegisterSpec        ::= ':' 'register' '(' Register ')'
+                        
+BlockDecl           ::= SimpleDecl
+
+SimpleDecl          ::= [DeclSpecSeq] [InitDeclList] ';'
+
+AbsDecl             ::= DirectAbsDecl
+
+DirectAbsDecl       ::= [DirectAbsDecl] '(' ParamDeclClause ')' |
+                        [DirectAbsDecl] '[' [ConstExp] ']' |
+                        '(' AbsDecl ')'
+                        
+
+DeclSpecSeq         ::= [DeclSpecSeq] DeclSpec
+
+InitDeclList        ::= InitDecl |
+                        InitDeclList ',' InitDecl
+
+InitDecl            ::=    Declarator [Init]
+
+Init                ::= '=' InitClause                         |
+                        ( ExpList)
+                        
+InitClause          ::= AssignmentExp |
+                        '{' InitList [','] '}' |
+                        '{' '}'
+InitList            ::= InitClause |
+                        InitList ',' InitClause
+                        
+DeclSpec            ::= TypeSpec
+                        
+TypeSpec            ::= SimpleTypeSpec |
+                        ClassSpec
+
+SimpleTypeSpec      ::=    'int' | 'half' | 'float' |
+                        'int2' | 'half2' | 'float2' |
+                        'int3' | 'half3' | 'float3' |
+                        'int4' | 'half4' | 'float4' |
+                        'float4x4'
+
+/////////////////////////////
+//Function
+/////////////////////////////
+FunctionDef         ::= [DeclSpecSeq] Declarator FunctionBody
+
+FunctionBody        ::= CompoundStatement
+
+/////////////////////////////
+//Statements
+/////////////////////////////
+CompoundStatement   ::= '{' [StatementSeq] '}'
+
+StatementSeq        ::= Statement |
+                        StatementSeq Statement
+
+Statement           ::= ExpStatement |
+                        CompountStatement |
+                        SelectionStatement |
+                        IterationStatement |
+                        DeclStatement
+                        
+ExpStatement        ::= [ Expression ] ';'
+
+SelectionStatement  ::= 'if' '(' Condition ')' Statement |
+                        'if' '(' Condition ')' Statement 'else' Statement
+
+IterationStatement  ::= 'while' '(' Condition ')' Statement |
+                        'do' Statement 'while' '(' Expression ')' ';'
+                        'for' '(' ForInitStatement [Condition] ';' [ Expression ] ')' Statement
+        
+Condition           ::= Expression |
+                        TypeSpecSeq Declarator '=' AssignmentExp
+
+ForInitStatement    ::= ExpStatement |
+                        SimpleDecl
+
+DeclStatement       ::= BlockDecl
+
+/////////////////////////////                        
+//Parameter
+/////////////////////////////
+ParamDeclClause     ::= [ ParamDeclList ]
+
+ParamDeclList       ::= ParamDecl |
+                        ParamDeclList ',' ParamDecl
+
+ParamDecl           ::= DeclSpecSeq Delarator |
+                        DeclSpecSeq [AbsDecl]
+
+
+/////////////////////////////
+//Class And Struct
+/////////////////////////////
+ClassSpec           ::= ClassHead '{' [ MemberSpec ] '}'
+
+ClassHead           ::= 'struct' [ Identifier ]
+
+MemberSpec    `     ::= MemberDecl [MemberSpec]
+
+MemberDeclaration   ::= [DeclSpecSeq] [MemberDeclList]
+
+MemberDeclList      ::= MemberDecl |
+                        MemberDeclList ',' MemberDeclarator
+                        
+MemberDeclarator    ::=    Declarator [ PureSpec ] |
+                        Declarator [ ConstInit ] |
+                        [ Identifier ] ':' ConstExp
+
+
+
+//////////////////////////////////////
+//Expressions
+//////////////////////////////////////
+Expression          ::= AssignmentExp
+
+ConstExp            ::= CondExp
+
+AssignmentExp       ::= CondExp |
+                        LogicalOrExp AssignmentOp AssignmentExp
+                        
+CondExp             ::= LogicalOrExp |
+                        LogicalOrExp '?' Expression ':' AssignmentExp
+
+LogicalOrExp        ::= LogicalAndExp |
+                        LogicalOrExp '||' LogicalAndExp
+                        
+LogicalAndExp       ::= InclusiveOrExp |
+                        LogicalAndExp '&&' InclusiveOrExp
+                        
+InclusiveOrExp      ::= ExclusiveOrExp |
+                        InclusiveOrExp '|' ExclusiveOrExp
+                        
+ExclusiveOrExp      ::= AndExp |
+                        ExclusiveOrExp '^' AndExp
+
+AndExp              ::= EqualExp |
+                        AndExp '&' EqualExp
+
+EqualExp            ::= RelExp |
+                        EqualExp '==' RelExp |
+                        EqualExp '!=' RelExp
+
+RelExp              ::=    ShiftExp |
+                        RelExp '<' ShiftExp |
+                        RelExp '>' ShiftExp |
+                        RelExp '<=' ShiftExp |
+                        RelExp '>=' ShiftExp
+
+ShiftExp            ::= AddExp |
+                        ShiftExp '<<' AddExp |
+                        ShiftExp '>>' AddExp
+
+AddExp              ::= MulExp |
+                        AddExp '+' MulExp |
+                        AddExp '-' MulExp
+
+MulExp              ::= PmExp |
+                        MulExp '*' PmExp |
+                        MulExp '/' PmExp |
+                        MulExp '%' PmExp
+    
+PmExp               ::= CastExp |
+                        PmExp '.*' CastExp
+
+CastExp             ::= UnaryExp |
+                        '(' TypeId ')' CastExp
+
+UnaryExp            ::= PostfixExp |
+                        '++' CastExp |
+                        '--' CastExp |
+                        UnaryOp CastExp
+                        
+PostfixExp          ::= PrimaryExp |
+                        PostfixExp '[' Expression ']' |
+                        PostfixExp '(' Expression ')' |
+                        PostfixExp '(' [ ExpList ] ')' |
+                        SimpleTypeSpec '(' [ ExpList ] ')' |
+                        PostfixExp '++' |
+                        PostfixExp '--'
+
+PrimaryExp          ::= Literal |
+                        '(' Expression ')' |
+                        IdExp
+
+IdExp               ::= UnqualifiedId
+
+ExpList             ::= AssigmentExp |
+                        ExpList ',' AssignmentExp
+                        
+//////////////////////////////
+//Identifier
+//////////////////////////////
+DeclId              ::= IdExp |
+                        TypeName
+
+UnqualifiedId       ::= Identifier
+
+Identifier          ::= NonDigit |
+                        Identifier NonDigit |
+                        Identifier Digit
+
+//////////////////////////////
+//Literals
+//////////////////////////////
+Literal             ::= IntLiteral |
+                        FloatLiteral |
+                        BoolLitreral
+
+IntLiteral          ::= DemicalLiteral
+
+DemicalLiteral      ::= NonZeroDigit |
+                        DemicalLiteral | Digit
+    
+FloatLiteral        ::= FracConstant [ExponentPart] |
+                        DigitSeq ExponentPart
+                        
+BoolLiteral            ::= 'false' |
+                        'true'
+
+FracConstant        ::= [DigitSeq] '.' DigitSeq |
+                        DigitSeq '.'
+                        
+ExponentPart        ::= 'e' [Sign] DigitSeq |
+                        'E' [Sign] DigitSeq
+                        
+DigitSeq            ::= Digit |
+                        DigitSeq Digit
+                        
+//////////////////////////
+//Terminals
+//////////////////////////
+
+NonDigit            ::= AlphaChar |
+                        '_'
+
+NonZeroDigit        ::= '1' | ... | '9'
+
+AssignmentOp        ::= '=' | 
+                        '*='  | '/='  | '%=' |
+                        '+='  | '-='  |
+                        '>>=' | '<<=' |
+                        '&='  | '^='  | '|='
+Register
+Semantic
+Digit
+AlphaChar
+Keyword

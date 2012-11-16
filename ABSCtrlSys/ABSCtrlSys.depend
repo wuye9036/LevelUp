@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1212481230 source:f:\wy\absctrlsys\main.c
+	<stdio.h>
+	<stdlib.h>
+	"xc164cs.h"
+
+1212482978 source:f:\wy\absctrlsys\xc164cs.c
+	"xc164cs.h"
+
+1212482692 f:\wy\absctrlsys\xc164cs.h
+	<malloc.h>
+
+1212481230 source:g:\programming\projects\mingwspace\absctrlsys\main.c
+	<stdio.h>
+	<stdlib.h>
+	"xc164cs.h"
+
+1212672535 g:\programming\projects\mingwspace\absctrlsys\xc164cs.h
+	<malloc.h>
+	<memory.h>
+
+1212672535 source:g:\programming\projects\mingwspace\absctrlsys\xc164cs.c
+	"xc164cs.h"
+
