@@ -1,0 +1,163 @@
+最近在看用javascript+css实现rich client。javascript 也是一个蛮有意思的语言。特别是其面向对象的实现和其他“标准”的OO launguage有很大的不同。但是，都是动态语言，我还是觉得它比起python语法和库都差得太远。可是没有explorer支持python开发啊。。。：（
+
+这是我学习javascript中面向对象特性的一点总结。希望对具有其他语言的面向对象设计经验的朋友理解javascript的OO有所帮助。我具有c++,java和python的面向对象设计的经验。
+
+总的感受， javascript作为一种弱类型的动态语言，语法接近于java，但其面向对象的方式更和python相识。
+
+1 面向对象的特性
+
+类，成员变量，成员函数，类变量，类方法，继承，多态
+
+1） 类
+
+类的定义：function Circle(r) { this.r = r; }
+
+类的实例化： c = Circle(3);
+
+2）成员变量
+
+成员变量在初始化函数里申明：this.r = r;
+
+注意，在对象生成后，你也可以给它附上成员变量，比如c.name="my circle"，
+
+但是除非特别的需要，我强烈建议你不要这样做。也就是所有的成员都应在初始化函数里声明。我认为这是一种好的style。
+
+这一点和python很相识。
+
+3）成员函数
+
+成员函数的标准形式是这样的：
+
+Cricle.prototype.area = function() { return 3.14 * this.r * this.r; }
+
+这和java或python或c++都大不一样。但为了帮助理解，你可以把prototype看作基类。
+
+prototype里面的变量或方法，是所有对象共享的。
+
+比如，c.area()调用最终就会让解释器调用到Circle.prototype.area().
+
+相比于java和c++，javascript具有他们都没有的一个语义，也就是你可以在prototype里定义变量。定义在prototype里的变量可以被所有的实例共享量。所以一般它应该是一个常数，比如：Circle.prototype.PI = 3.14.
+
+显然，prototype里的变量和方法都应该是不变的。每一个对象实例都不应该取修改prototype中的内容。虽然语言允许你可以这样做，但这样做没有任何意义，也违反了面向对象的语义（想想，java会让你动态修改一个类的方法吗）。
+
+当然，对于多态是另外一回事，在后面详述。
+
+而且，我建议所有的成员函数都在紧接类定义的地方定义。而不应该在代码运行的某个地方对一个对象实例增加/修改成员函数。这样的结果是javascript的类定义尽量向java看齐。使得代码更清晰。
+
+4）类变量
+
+类变量是属于一个类的变量。就像java里用static修饰的变量。因为它属于类，所以它也应该是一个常量。实例不应该去修改它，虽然你可以（java里可以用final修饰，使得类变量一旦定义，就不能修改）。这里可以看到，类变量和prototype里定义的变量的功能是相似的。确实如此，他们的目的都是一样的。但他们的访问方式
+
+不一样。比如：
+
+Circle.prototype.PI = 3.14;
+
+Circle.PI = 3.14;
+
+//用prototype里的变量
+
+Circle.prototype.area1 = function() { return this.PI * this.r * this.r; }
+
+//用类变量
+
+Circle.prototype.area2 = function() { return Circle.PI * this.r * this.r; }
+
+5）类方法
+
+这个概念应该很简单。注意类方法里绝对不要用this关键字，和java完全一样。
+
+Circle.max = function(a, b) {
+    return a.r > b.r ? a : b;
+}
+
+theMax = Circle(new Circle(1), new Circle(4));
+
+6）继承
+
+子类继承父类，那么 “子类实例” 具有和 “父类实例” 完全一样的行为。javascript是这样实现的。
+
+function SubCircle(x, y, r) {
+  this.x = x;
+  this.y = y;
+  this.r =r;
+}
+
+SubCircle.prototype = new Circle(0);
+记得前面说的吗？可以把prototype看作一个基类。这里，prototype确确实实是一个基类。它是如何实现的呢？
+
+举例如下：
+sc = SubCirlce(1,1,3);
+sc.area();
+
+调用的传递：
+sc.area()->sc.prototype.area()->Circle(0).area()->Circle.prototype.area().
+看来是不是很奇妙呢。
+
+通过这种方式，javascript实现了继承。
+
+7）多态
+
+多态是子类会定义和父类具有相同signature的方法。假设在SubCircle所在的空间PI=100,而面积公式也变为 PI*R*R*R。
+
+SubCircle.prototype.PI = 100
+
+SubCircle.prototype.area = function() {
+   return this.PI*this.r*this.r*this.r;
+}
+Sc.area()
+
+这样的操作可以认为是:
+
+Sc.PI->sc.prototype.PI->Cricle(0).PI = 100
+
+Sc.area()->sc.prototype.area()->Circle(0).area.
+这个时候，调用过程是这样的
+
+sc.area()->sc.prototype.area(),在这里解释器发现了area这个方法，于是它就调用此方法。
+
+而Cricle.prototype.area就永远也不会被调用。PI的调用也是如此。那么子类如何想调用父类的方法应怎么办呢？好像没有什么办法哦，谁知道可以告诉我。但面向对象的理论告诉我们，继承主要是提供接口而不是代码复用，所以还是少有这样的念头为好 ：）。
+
+下面是一个例子程序。包含上面的所有的概念。
+例子
+///////////define: Cricle//////////////////
+function Circle(r) {
+this.r = r;
+}
+Circle.PI = 3.14;
+Circle.prototype.PI = 3.14;
+Circle.prototype.area = function() { return Circle.PI*this.r*this.r; }
+Circle.prototype.area2 = function() { return this.PI*this.r*this.r; }
+
+
+//// test
+c = new Circle(3);
+//alert("area1 :"+c.area());
+//alert("area2 :"+c.area2());
+
+Circle.max = function(a, b) { return a.r>b.r ? a.r : b.r; }
+//alert("max is "+Circle.max(new Circle(1), new Circle(3)));
+
+c1 = new Circle(1);
+c2 = new Circle(1);
+c2.PI = 100;//Circle.prototype.PI=100;
+
+//alert("c1.area1 "+c1.area());
+//alert("c1.area2 "+c1.area2());
+//alert("c2.area1 "+c2.area());
+//alert("c2.area2 "+c2.area2());
+
+////////////////////////define: SubCircle //////////////////
+function SubCircle(x, y, r) {
+this.x = x;
+this.y = y;
+this.r = r;
+}
+SubCircle.prototype = new Circle(0);
+SubCircle.prototype.PI = 100;
+SubCircle.prototype.move2 = function(x, y) { this.x = x; this.y = y;}
+SubCircle.prototype.area = function() { return this.PI*this.r*this.r*this.r; }
+
+//// test
+sc = new SubCircle(0,0,2);
+
+alert(sc.area());

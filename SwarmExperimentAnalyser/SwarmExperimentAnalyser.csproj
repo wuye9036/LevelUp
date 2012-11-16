@@ -1,0 +1,219 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{75BBA8DF-6FAF-4E05-AA8E-520E450712FE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SwarmExperimentalAnalyser</RootNamespace>
+    <AssemblyName>SwarmExperimentalAnalyser</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleAssemblies>D:\Software\Microsoft Visual Studio 8\Team Tools\Static Analysis Tools\FxCop\\rules</CodeAnalysisRuleAssemblies>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleAssemblies>D:\Software\Microsoft Visual Studio 8\Team Tools\Static Analysis Tools\FxCop\\rules</CodeAnalysisRuleAssemblies>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\常州人防\Components\MapDatabase\Core\bin\Debug\Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v9.1.Core, Version=9.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v9.1.UI, Version=9.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Iridium.Test, Version=2008.8.16.470, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Library\MathNet.Iridium\Binaries\Release\Iridium.Test.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Iridium, Version=2008.8.16.470, Culture=neutral, PublicKeyToken=c061a3ec32cc0c6f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Library\MathNet.Iridium\Binaries\Release\MathNet.Iridium.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Context.cs" />
+    <Compile Include="Model\ChunkIO\Chunk.cs" />
+    <Compile Include="Model\ChunkIO\ChunkReader.cs" />
+    <Compile Include="Model\Experiment\ChunkParser.cs" />
+    <Compile Include="Model\Experiment\DataFormat.cs" />
+    <Compile Include="Model\Experiment\Experiment.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="UI\ExperimentInformation\DataFormatTable.cs" />
+    <Compile Include="UI\ExperimentInformation\ExperimentListForm.cs">
+    </Compile>
+    <Compile Include="UI\ExperimentInformation\ExperimentListForm.Designer.cs">
+      <DependentUpon>ExperimentListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Exporter\NTSMatrixExporterForm.cs">
+    </Compile>
+    <Compile Include="UI\Exporter\NTSMatrixExporterForm.Designer.cs">
+      <DependentUpon>NTSMatrixExporterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Exporter\TSMatrixExporterForm.cs">
+    </Compile>
+    <Compile Include="UI\Exporter\TSMatrixExporterForm.Designer.cs">
+      <DependentUpon>TSMatrixExporterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Exporter\ValueExporter.cs" />
+    <Compile Include="UI\Exporter\TSScalarExporterForm.cs">
+    </Compile>
+    <Compile Include="UI\Exporter\TSScalarExporterForm.Designer.cs">
+      <DependentUpon>TSScalarExporterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Plotters\Array2DPlotter.cs" />
+    <Compile Include="UI\Plotters\MatrixDrawers.cs">
+    </Compile>
+    <Compile Include="UI\Plotters\MatrixDrawers.Designer.cs">
+      <DependentUpon>MatrixDrawers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Plotters\PlotTSMatrixForm.cs">
+    </Compile>
+    <Compile Include="UI\Plotters\PlotTSMatrixForm.Designer.cs">
+      <DependentUpon>PlotTSMatrixForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Plotters\PlotTSScalarForm.cs">
+    </Compile>
+    <Compile Include="UI\Plotters\PlotTSScalarForm.Designer.cs">
+      <DependentUpon>PlotTSScalarForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="UI\ExperimentInformation\ExperimentListForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ExperimentListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Exporter\NTSMatrixExporterForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NTSMatrixExporterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Exporter\TSMatrixExporterForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TSMatrixExporterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Exporter\TSScalarExporterForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TSScalarExporterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Plotters\MatrixDrawers.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MatrixDrawers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Plotters\PlotTSMatrixForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PlotTSMatrixForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Plotters\PlotTSScalarForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PlotTSScalarForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Plotters\PlotNTSMatrixForm.resx">
+      <DependentUpon>PlotNTSMatrixForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Sandbox\StochasticTest.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>StochasticTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="UI\Plotters\PlotNTSMatrixForm.cs">
+    </Compile>
+    <Compile Include="UI\Plotters\PlotNTSMatrixForm.Designer.cs">
+      <DependentUpon>PlotNTSMatrixForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Sandbox\GaussSurfaceGenerator.cs" />
+    <Compile Include="UI\Sandbox\SpatialCorrelationSwapSurfaceGenerator.cs" />
+    <Compile Include="UI\Sandbox\StochasticTest.cs">
+    </Compile>
+    <Compile Include="UI\Sandbox\StochasticTest.Designer.cs">
+      <DependentUpon>StochasticTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Sandbox\SurfaceGenerator.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

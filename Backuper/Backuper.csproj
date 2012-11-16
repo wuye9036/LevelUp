@@ -1,0 +1,258 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{05952101-B47D-4209-B6D9-EF29135F578E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Backuper</RootNamespace>
+    <AssemblyName>Backuper</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Backuper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Backuper.Designer.cs">
+      <DependentUpon>Backuper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChecksumComputeProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChecksumComputeProgress.Designer.cs">
+      <DependentUpon>ChecksumComputeProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChecksumOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChecksumOption.Designer.cs">
+      <DependentUpon>ChecksumOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CopyFiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CopyFiles.Designer.cs">
+      <DependentUpon>CopyFiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExportOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExportOption.Designer.cs">
+      <DependentUpon>ExportOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileOperationProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileOperationProgress.Designer.cs">
+      <DependentUpon>FileOperationProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoadOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadOption.Designer.cs">
+      <DependentUpon>LoadOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OverwritePrompt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OverwritePrompt.Designer.cs">
+      <DependentUpon>OverwritePrompt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Backuper.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Backuper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChecksumComputeProgress.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ChecksumComputeProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChecksumOption.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ChecksumOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CopyFiles.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CopyFiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExportOption.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ExportOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileOperationProgress.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FileOperationProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadOption.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LoadOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OverwritePrompt.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>OverwritePrompt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveOption.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SaveOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="SaveOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SaveOption.Designer.cs">
+      <DependentUpon>SaveOption.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\redo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save as.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_as_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\undo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\web_conect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\web_link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wizard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\about.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\applications.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bookmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\export.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\go.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\map.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\options.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\open.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mesh2D", "Mesh2D.csproj", "{F48988D1-159C-43D4-9247-BB8056124D28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sharp3D.Math", "..\..\..\Library\Sharp3D\Sharp3D.Math\Sharp3D.Math.csproj", "{441FF4C9-0F85-4470-A274-41408B420F86}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F48988D1-159C-43D4-9247-BB8056124D28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F48988D1-159C-43D4-9247-BB8056124D28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F48988D1-159C-43D4-9247-BB8056124D28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F48988D1-159C-43D4-9247-BB8056124D28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{441FF4C9-0F85-4470-A274-41408B420F86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{441FF4C9-0F85-4470-A274-41408B420F86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{441FF4C9-0F85-4470-A274-41408B420F86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{441FF4C9-0F85-4470-A274-41408B420F86}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
