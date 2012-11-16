@@ -1,0 +1,114 @@
+<ui version="4.0" >
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>711</width>
+    <height>450</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" >
+   <item>
+    <widget class="QGroupBox" name="groupBox" >
+     <property name="font" >
+      <font>
+       <family>Palatino Linotype</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="title" >
+      <string>Linguistic Value Table</string>
+     </property>
+     <layout class="QVBoxLayout" >
+      <item>
+       <widget class="QTableView" name="tableView" >
+        <property name="contextMenuPolicy" >
+         <enum>Qt::ActionsContextMenu</enum>
+        </property>
+        <property name="selectionMode" >
+         <enum>QAbstractItemView::SingleSelection</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>20</width>
+       <height>15</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" >
+     <item>
+      <spacer>
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" >
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="checkBtn" >
+       <property name="font" >
+        <font>
+         <family>Palatino Linotype</family>
+        </font>
+       </property>
+       <property name="text" >
+        <string>检查</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="acceptBtn" >
+       <property name="font" >
+        <font>
+         <family>Palatino Linotype</family>
+        </font>
+       </property>
+       <property name="text" >
+        <string>确认</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancleBtn" >
+       <property name="font" >
+        <font>
+         <family>Palatino Linotype</family>
+        </font>
+       </property>
+       <property name="text" >
+        <string>取消</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

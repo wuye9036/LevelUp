@@ -1,0 +1,45 @@
+h2, h3, h4
+{
+	font-family: Times New Roman; font-weight:bold
+}
+h2
+{
+	font-size: x-large
+}
+p
+{
+	font-family: Times New Roman; font-size: medium
+}
+.kw
+{
+	font-family: Courier New; font-size: 9pt; color: #7F0055;
+}
+.ident
+{
+	font-family: Courier New; font-size: 9pt;
+}
+table
+{
+	border-collapse: collapse;
+}
+td, th
+{
+	border-style: solid;
+	border-width: thin;
+	padding: 5px;
+}
+th
+{
+	white-space: nowrap;
+}
+ul, li
+{
+	margin: 0px;
+}
+pre
+{
+	margin : 1px;
+	text-align: left;
+	font-family: Courier New;
+	font-size: 9pt;
+}

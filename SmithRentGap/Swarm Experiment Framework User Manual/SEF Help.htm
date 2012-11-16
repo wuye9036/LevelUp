@@ -1,0 +1,855 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Swarm-based Multi-Agent Developer Framework Tutorial</title>
+	<script type="text/javascript" src="scripts/shCore.js"></script>
+	<script type="text/javascript" src="scripts/shBrushCSharp.js"></script>
+	<script type="text/javascript" src="scripts/shBrushJava.js"></script>
+	<script type="text/javascript" src="scripts/shBrushPlain.js"></script>
+	<link href="SERF Help.css" rel="stylesheet" type="text/css" />
+	<link type="text/css" rel="stylesheet" href="styles/shCore.css"/>
+	<link type="text/css" rel="stylesheet" href="styles/shThemeDefault.css"/>
+	<script type="text/javascript">
+		SyntaxHighlighter.config.clipboardSwf = 'scripts/clipboard.swf';
+		SyntaxHighlighter.all();
+	</script>
+
+</head>
+<body>
+	<h1 style="text-align:center">多智能体模拟框架使用指南</h1>
+	<h2>1.简介</h2>
+	<p>本框架基于Swarm 2.2.2开发，提供了一个可以快速开发多智能体模拟系统的框架。</p>
+	<h2>2.安装指南</h2>
+	<h3>2.1 Eclipse的安装</h3>
+	<p>Eclipse是一个无需安装的程序。直接将Eclipse解压到对应目录即可。在下文中，我们将使用$(Eclipse)代指Eclipse的安装路径。</p>
+	<h3>2.2 支撑库的安装</h3>
+	<h4>2.2.1 JDK</h4>
+	<p>下载JDK的安装包（注意操作系统的版本，windows选择i386的安装包。附带的安装包为J2SE 1.6 Update 16）。执行安装程序进行安装。 </p>
+	<h4>2.2.2 Swarm</h4>
+	<p>安装步骤见文档<a href="How_to_use_java_swarm_in_eclipse.pdf">如何在Eclipse中使用Java Swarm</a>。</p>
+	<h4>2.2.3 JSC</h4>
+	<p>首先，将JSC下载到本地。为了方便起见，在安装好Swarm后，我们将JSC也一并添加到Swarm的Reference Library列表中。
+	然后打开Eclipse，选择之前建好的Swarm Reference Lib。在这里，我们叫SwarmJavaLib。如下图所示：
+	</p>
+	<img alt="Missing Image File" src="Projects.jpg" width="600" />
+	<p>右击该项，并选择菜单项"Properties"，打开属性窗口。在左侧树节点中选择"Java Build Path"，此时右侧面板为库引用的设置面板。如下图所示。</p>
+	<img alt="Missing Image File" src="JavaBuildPath.jpg" width="600" />
+	<h2>3.架构和组件</h2>
+	<h3>3.1 概述</h3>
+	<p>模拟工具的架构图如下：</p>
+	<img alt="Missing Image File" src="Arch.jpg" width="400"/>
+	<p>包的基本信息如下表：</p>
+	<table style="border-style: solid; border-width: thin">
+		<thead><tr>
+			<th>组件名</th>
+			<th>简介</th>
+			<th>相关程序</th>
+		</tr></thead>
+		<tbody>
+		<tr>
+			<td><span class="ident">SRGSimulator</span></td>
+			<td>模拟实现。</td>
+			<td>
+				<ul>
+					<li><span class="kw">class</span> <span class="ident">Developer</span></li>
+					<li><span class="kw">class</span> <span class="ident">ResearchArea</span></li>
+					<li><span class="kw">class</span> <span class="ident">PropertyUnit</span></li>
+					<li><span class="kw">class</span> <span class="ident">RentGapBatchSwarm</span></li>
+					<li><span class="kw">class</span> <span class="ident">RentGapModelSwarm</span></li>
+					<li><span class="kw">class</span> <span class="ident">ExperimentRecorder</span></li>
+					<li><span class="kw">class</span> <span class="ident">StartRentGap</span></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td><span class="ident">Math</span></td>
+			<td>提供数学支持包。</td>
+			<td><ul>
+				<li><span class="kw">class</span> <span class="ident">mas.math.random.Randomizer</span></li>
+				<li><span class="kw">class</span> <span class="ident">mas.math.random.ConstantRandomizer</span></li>
+				<li><span class="kw">class</span> <span class="ident">mas.math.random.NormalRandomizer</span></li>
+				<li><span class="kw">class</span> <span class="ident">mas.math.random.UniformRandomizer</span></li>
+				<li><span class="kw">class</span> <span class="ident">mas.math.random.DistributedZone</span></li>
+				<li><span class="kw">class</span> <span class="ident">mas.math.random.RandomizeDistributedZone</span></li>
+				<li><span class="kw">class</span> <span class="ident">mas.math.random.GaussDistributedZone</span></li>
+			</ul></td>
+		</tr>
+		<tr>
+			<td><span class="ident">ChunkBasedIO</span></td>
+			<td><p>提供SERF格式文件的存储功能。</p></td>
+			<td><ul>
+				<li><span class="kw">class</span> <span class="ident">mas.io.Chunk</span></li>
+				<li><span class="kw">class</span> <span class="ident">mas.io.ChunkWriter</span></li>
+				<li><span class="kw">class</span> <span class="ident">mas.io.RecordBinaryWriter</span></li>
+				<li><span class="kw">class</span> <span class="ident">mas.io.RecordItemDataType</span></li>
+				<li><span class="kw">enum</span> <span class="ident">mas.io.RecordItemDataDimension</span></li>
+				<li><span class="kw">enum</span> <span class="ident">mas.io.RecordItemFormatDescription</span></li>
+				<li><span class="kw">enum</span> <span class="ident">mas.io.RecordItemIOType</span></li>
+			</ul></td>
+		</tr>
+		</tbody>
+	</table>
+	<h3>3.2 Math包</h3>
+	<h4>3.2.1 概述</h4>
+	<p>Math包主要提供了两种工具，即随机数发生器和随机表面生成器。其中，随机数发生器是建立在JSC(Java Statistical Classes)的基础上。而随机表面生成器，是建立在随机数发生器的基础上。如果需要不同的随机数发生器，需要对随机数发生器进行相应的扩展。</p>
+	<h4>3.2.2 随机数发生器</h4>
+	<p>随机数发生器提供了随机数的生成能力。所有的随机数发生器均需要从接口Randomizer处派生。下表为Randomizer及相关类的定义。</p>
+	<table>
+		<tr><th>类名</th><td><pre class="brush:java; gutter: false">interface Randomizer</pre></td></tr>
+		<tr><th>描述</th><td><p>提供了随机数生成器的接口。</p></td></tr>
+		<tr><th>定义</th>
+		<td><pre class="brush: java; gutter: false">
+public interface Randomizer {
+	// 取下一个随机的双精度浮点
+	double nextDouble();
+	// 取下一个随机的单精度浮点
+	float nextFloat();
+	// 取下一个随机的整数
+	int nextInt();
+	// 标准化，将数值缩放到一定范围内。仅对有界的随机数生成器有意义（例如均一随机数生成器）。
+	int normalize(double v);
+}
+		</pre></td>
+		</tr>
+		<tr><th>备注</th><td>无</td></tr>
+<!--	</table>
+	<table>-->
+		<tr><td colspan="2" style="height: 5px; padding: 0px; margin: 0px;"></td></tr>
+		<tr><th>类名</th><td><pre class="brush:java; gutter: false">class UniformRandomizer</pre></td></tr>
+		<tr><th>描述</th><td><p>返回一定范围内的均等分布。</p></td></tr>
+		<tr><th>定义</th>
+		<td><pre class="brush: java; gutter: false"> 
+public class UniformRandomizer implements Randomizer{
+	// 根据最大最小值范围构造均一分布的随机数生成器。
+	public UniformRandomizer(double min, double max);
+	// 根据均值和方差构造均一分布的随机数生成器
+	static public UniformRandomizer CreateAsAvgSd(double avg, double sd);
+	// 根据均值和取值半径构造均一分布的随机数生成器。区间在[mid - range, mid + range)
+	static public UniformRandomizer CreateAsMidRange( double mid, double range );
+
+	// 获取随机数
+	public double nextDouble();
+	public float nextFloat();
+	public int nextInt();
+	public int normalize(double v);
+}
+		</pre></td>
+		</tr>
+		<tr><th>备注</th><td><p>基于java.util.Random的随机数发生器。该随机数发生器的均匀性不是非常好，如果需要，可以更换成JSC提供的UniformRandomizer。</p></td></tr>
+		<tr><td colspan="2" style="height: 5px; padding: 0px; margin: 0px;"></td></tr>
+		<tr><th>类名</th><td><pre class="brush:java; gutter: false">class ConstantRandomizer</pre></td></tr>
+		<tr><th>描述</th><td><p>一个常量随机数发生器。固定的返回一个常量。</p></td></tr>
+		<tr><th>定义</th>
+		<td><pre class="brush: java; gutter: false"> 
+public class ConstantRandomizer {
+	// 构造函数。v为该发生器的返回值。
+	public ConstantRandomizer(double v);
+	// 取下一个随机的双精度浮点
+	double nextDouble();
+	// 取下一个随机的单精度浮点
+	float nextFloat();
+	// 取下一个随机的整数
+	int nextInt();
+	// 标准化
+	int normalize(double v);
+}
+		</pre></td>
+		</tr>
+		<tr><th>备注</th><td>利用随机数发生器的接口生成常量。</td></tr>
+		<tr><td colspan="2" style="height: 5px; padding: 0px; margin: 0px;"></td></tr>
+		<tr><th>类名</th><td><pre class="brush:java; gutter: false">class NormalRandomizer</pre></td></tr>
+		<tr><th>描述</th><td><p>高斯分布的随机数发生器。</p></td></tr>
+		<tr><th>定义</th>
+		<td><pre class="brush: java; gutter: false"> 
+public class NormalRandomizer implements Randomizer{
+	// 根据均值miu和标准差delta构造随机数发生器。
+	public NormalRandomizer( double miu, double delta );
+	// 取下一个随机的双精度浮点
+	double nextDouble();
+	// 取下一个随机的单精度浮点
+	float nextFloat();
+	// 取下一个随机的整数
+	int nextInt();
+	// 标准化
+	int normalize(double v);
+}
+		</pre></td>
+		</tr>
+		<tr><th>备注</th><td><p>JSC的随机数发生器的封装。</p></td></tr>
+	</table>
+	<h4>3.2.3 随机表面生成器</h4>
+	<p>随机表面生成器的接口用于生成二维的随机表面。所有的随机表面生成器均从DistributedZone接口继承。</p>
+	<table>
+		<tr><th>类名</th><td><pre class="brush:java; gutter: false">interface DistributedZone</pre></td></tr>
+		<tr><th>描述</th><td><p>定义了随机表面的生成接口。</p></td></tr>
+		<tr><th>定义</th>
+		<td><pre class="brush: java; gutter: false">
+public abstract class DistributedZone {
+	// 创建随机表面生成器，需要指定随机表面生成所使用的随机数发生器、随机表面的长宽。
+	public DistributedZone(Randomizer rand, int width, int height)
+	
+	// 取得随机表面指定(x,y)坐标处的值。该函数仅在随机表面生成后有效。
+	public abstract float getValue(int x, int y);
+
+	// 获取随机表面的统计量：最大值、最小值、标准差和均值。
+	public abstract float getMax();
+	public abstract float getMin();
+	public abstract float getStandardDev();
+	public abstract float getAverage();
+}
+		</pre></td>
+		</tr>
+		<tr><th>备注</th><td>无</td></tr>
+<!--	</table>
+	<table>-->
+		<tr><td colspan="2" style="height: 5px; padding: 0px; margin: 0px;"></td></tr>
+		<tr><th>类名</th><td><pre class="brush:java; gutter: false">class RandomizeDistributedZone</pre></td></tr>
+		<tr><th>描述</th><td><p>利用随机数发生器构造独立不相关的随机表面。</p></td></tr>
+		<tr><th>定义</th>
+		<td><pre class="brush: java; gutter: false"> 
+public class RandomizeDistributedZone extends DistributedZone{
+	// 创建随机表面生成器，需要指定随机表面生成所使用的随机数发生器、随机表面的长宽。
+	public DistributedZone(Randomizer rand, int width, int height);
+	
+	// 取得随机表面指定(x,y)坐标处的值。注意，由于算法的实现问题，即便坐标相同，两次取值也不会相同。
+	// 如果程序有需要保存一个固定的表面，那么需要自行实现表面数据的暂存。
+	public abstract float getValue(int x, int y);
+
+	// 获取随机表面的统计量。该类此四项统计数据一律返回0.0
+	public abstract float getMax();
+	public abstract float getMin();
+	public abstract float getStandardDev();
+	public abstract float getAverage();
+}
+		</pre></td>
+		</tr>
+		<tr><th>备注</th><td><p>无。</p></td></tr>
+		<tr><td colspan="2" style="height: 5px; padding: 0px; margin: 0px;"></td></tr>
+		<tr><th>类名</th><td><pre class="brush:java; gutter: false">class GaussDistributedZone</pre></td></tr>
+		<tr><th>描述</th><td><p>指数空间自相关函数的高斯表面生成器。</p></td></tr>
+		<tr><th>定义</th>
+		<td><pre class="brush: java; gutter: false"> 
+public class GaussDistributedZone extends DistributedZone {
+	// 高斯分布表面的参数。依次为宽、高、均值、标准差，卷积核大小和相关长度。
+	public GaussDistributedZone(int width, int height, double mean, double delta, int kernelSize, double T);
+
+	// 重新生成高斯表面。
+	public void regenerate();
+
+	// 取高斯表面的值。
+	public float getValue(int x, int y);
+	
+	// 分配空间，初始化数据。
+	private void initializeData();
+	
+	// 初始化卷积核。
+	private void initializeFilterKernel();
+	
+	// 对单个单元进行卷卷积操作
+	private double convolveCell(int x, int y);
+	
+	// 获取卷积核的权重
+	private double weight(int i, int j);
+
+	// Summary-Area Table算法，加速对边缘像素卷积结果的标准化计算。
+	private double kernelSum(int b, int r);
+	private double kernelSum(int l, int r, int t, int b);
+	
+	// 更新统计量
+	private void updateStatistics();
+	
+	// 独立随机的表面
+	private double data[][];
+	// 卷积操作后的空间自相关表面
+	private double convolvedData[][];
+	
+	// 实际的最大、最小、标准差和均值。
+	private double actualMax;
+	private double actualMin;
+	private double actualAverage;
+	private double actualStddev;
+	
+	// 表面的大小
+	private int width;
+	private int height;
+	
+	// 表面生成的参数
+
+	// 相关长度
+	private double T;
+	// 标准差
+	private double delta;
+	// 均值
+	private double mean;
+	// 常量，根号Pi
+	private double sqrtPi;
+	
+	// 卷积核。
+	private double kernel[][];
+	private double kernelSummaryTable[][];
+	private int kernelSize;
+	
+	// 获取统计量。
+	public float getAverage();
+	public float getMax();
+	public float getMin();
+	public float getStandardDev();
+}
+		</pre></td>
+		</tr>
+		<tr><th>备注</th><td>该随机数发生器生成服从指数空间自相关函数的高斯表面。算法分成以下步骤：
+		<pre class="brush: plain">生成均值为0，标准差为1的标准正态分布的独立随机表面。
+根据标准差和自相关长度T，构造卷积核（注意，如果自相关长度T较大，那么卷积核也应该较大，否则会导致较大的误差）。
+进行卷积操作。对于边缘像素，卷积不会使用到整个卷积核，此时周围像素卷积后的标准差要较期望值为小。在此，使用该以下公式对卷积结果进行修正：卷积前值 / 用到的卷积核的权值和 * 整个卷积核的权值和。在求局部卷积权重之和时，使用了Summary-Area Table(SAT)算法进行了求和加速。
+将均值统一增加到卷积后的结果上。</pre>
+		<p>和RandomizeDistributedZone不同，当表面生成之后会被保存下来。当表面生成后，如果不调用Regenerate重置表面，那么getValue在同一个坐标下所获得的值，是相同的。</p>
+		</td></tr>
+	</table>
+	<h3>3.3 ChunkBasedIO包</h3>
+	<h4>3.3.1 简介</h4>
+	<p>该包为实现提供了SERF格式的文件存储。设计和实现细节，请参见源码。该文档主要提供Chunk-based IO的使用。对该组件的扩展，请参见FAQ一栏。</p>
+	<h4>3.3.2 参考</h4>
+	<table>
+		<tr><th>类名</th><td><pre class="brush:java; gutter: false">class RecordBinaryWriter</pre></td></tr>
+		<tr><th>描述</th><td><p>提供了层次化的实验数据输出接口。</p></td></tr>
+		<tr><th>定义</th>
+		<td><pre class="brush: java; gutter: false">
+public class RecordBinaryWriter {
+	// 打开一个记录文件。
+	public RecordBinaryWriter(String filePath);
+	
+	// 开始记录批量实验的数据。
+	public void beginBatch( String batchDesc );
+	// 结束记录批量实验的数据。
+	public void endBatch();
+
+	// 将记录格式写入到文件中。
+	public void writeRecordItemFormatArray(RecordItemFormatDescription[] itemFmts);
+
+	// 开始记录实验数据
+	public void beginExperiment( String expName );
+	// 结束记录实验数据
+	public void endExperiment();
+	
+	// 开始记录一组非时间序列的数据。
+	public void beginNonTimeSeriesData();
+	// 结束记录一组非时间序列的数据。
+	public void endNonTimeSeriesData();
+	
+	// 开始记录时间序列的数据。第一个参数为时间戳，第二个参数为数据在时间序列数据格式中的序号。
+	public void beginTimeStamp(int timeStamp, int recId);
+	// 结束时间序列数据。
+	public void endTimeStamp();
+	
+	// 向数据中写入一个标量。
+	public void write*(v);
+	
+	// 向数据中写入一个list
+	public void write*List(List<> v);
+}
+
+		</pre></td>
+		</tr>
+		<tr><th>备注</th><td><p>RecordBinaryWriter是一个较为底层的类。对该类的调用需要遵循一定的顺序和格式方能将数据正确写入。具体的使用方法请参见FAQ。</p></td></tr>
+
+		<tr><td colspan="2" style="height: 5px; padding: 0px; margin: 0px;"></td></tr>
+
+		<tr><th>类名</th><td><pre class="brush:java; gutter: false">class RecordItemFormatDescription</pre></td></tr>
+		<tr><th>描述</th><td><p>描述记录格式。</p></td></tr>
+		<tr><th>定义</th>
+		<td><pre class="brush: java; gutter: false"> 
+public class RecordItemFormatDescription {
+	// 构造单条记录格式
+	public static RecordItemFormatDescription create(
+			RecordItemIOType ioType,			// 输入/输出数据。在目前的版本中无意义。
+			RecordItemDataDimension itemType,	// 存储的数据维度。代表数据是标量的、一维数组或者二维矩阵。
+			String name,						// 数据名称。（即参数名称）
+			RecordItemDataType itemDataType,	// 数据类型。目前支持将float、double、int、long、string等五种数据类型写入文件中。
+			boolean isTimeSeries,				// 是否为时间序列数据。
+			long[] size							// 数据大小。如果是标量，该值无意义。如果是数组，代表数组长度。如果是二维矩阵，则分别代表矩阵两个维度的大小。
+			);
+}
+		</pre></td>
+		</tr>
+		<tr><th>备注</th><td><p>无。</p></td></tr>
+	</table>
+	<h3>3.4 SRGSimulator包</h3>
+	<h4>3.4.1 简介</h4>
+	<p>SRGSimulator包包含了主要的模拟功能。</p>
+	<h4>3.4.2 参考</h4>
+	<table>
+		<tr><th>类名</th><td><pre class="brush:java; gutter: false">class PropertyUnit</pre></td></tr>
+		<tr><th>描述</th><td><p>地产单元。</p></td></tr>
+		<tr><th>定义</th>
+		<td><pre class="brush: java; gutter: false">
+public class PropertyUnit {
+	public float potentialRent;				// 地产单元的潜在地租
+	public float orgCaptialRent;			// 最近一次翻修/重建后的价格。
+	
+	public float orgConstructionCost;		// 原始的构建成本（C0）
+	
+	public float capitalRent;				// 当前资本租金。
+	public int time;						// 衰败时间（x）
+	
+	public double exp_inv_lambda_x_time;	// e ^ (-lambda * x), 加速结构
+}
+		</pre></td>
+		</tr>
+		<tr><th>备注</th><td><p>无</p></td></tr>
+
+		<tr><td colspan="2" style="height: 5px; padding: 0px; margin: 0px;"></td></tr>
+
+		<tr><th>类名</th><td><pre class="brush:java; gutter: false">class ResearchArea</pre></td></tr>
+		<tr><th>描述</th><td><p>研究区域。在实现中也包括了业主的行为。</p></td></tr>
+		<tr><th>定义</th>
+		<td><pre class="brush: java; gutter: false"> 
+public class ResearchArea extends Grid2dImpl {
+	// 全局常量
+
+	// 衰减系数
+	static public float lambda = 0.02f;							
+	// 预计算后的 e ^ -lambda。加速计算用。
+	static public double decayConstant = Math.exp(-lambda);
+
+	// 区域大小
+	public int width;
+	public int height;
+	
+	// 区域中所有单元PU的列表
+	private ArrayList&lt;PropertyUnit&gt; pus;
+
+	// CR的临时存储。
+	private ArrayList&lt;Float&gt; temporaryCapitalRent;
+
+	// ResearchArea所属的Model Swarm
+	private RentGapModelSwarm model;
+	// 区域平均地租（每周期更新）
+	private float acr;
+	
+	// 初始化研究区域。主要分为两个步骤：
+	//   1. 初始化常量
+	//   2. 新建房产单元，并初始化。
+	public ResearchArea(Zone zone, int w, int h, RentGapModelSwarm model );
+	// 一个快速的floor的求解。
+	private static int fast_floor_i(float v);
+	
+	// 计算指定半径内的像素范围。
+	private int calcStartPos(int x, float radius);
+	private int calcEndPos(int x, float radius);
+	
+	// 判断两点距离是否大于阈值
+	private boolean farThan(Grid2DPosition pos0, Grid2DPosition pos1, float dist);
+
+	// 对PU执行衰减操作。
+	private void decayPUs();
+
+	// 重建PU。该函数实际上是业主/房东的行为。主要步骤如下：
+	//   1. 计算邻居节点的平均地租
+	//   2. 将本节点地租与邻居比较，如果翻新后的利益上升大于成本，则执行翻新。此时CR与NR设置为同一值，衰减时间time归零。
+	private void rehabilitatePUs();
+
+	// 计算ACR并保存。（用于接下来的数据写入）
+	private void updateACR();
+	
+	// 获得指定范围内的邻居的平均地租。
+	//   pos为中心坐标。
+	//   邻居范围由Model Swarm的neighbourRadius字段提供。
+	public float getNeighbourRent(Grid2DPosition pos);
+
+	// 根据衰败时间，计算该地产单元的翻建成本。
+	public float getConstructionCost(Grid2DPosition pos);
+	public float getConstructionCost(PropertyUnit pu);
+
+	// 计算pos所在的cell下，当前地租与邻居地租的差。
+	public float getNeighbourGap(Grid2DPosition pos);
+
+	// 根据坐标获得对应的PropertyUnit。
+	public PropertyUnit getPropertyUnit(Grid2DPosition pos);
+	public PropertyUnit getPropertyUnit(int x, int y);
+	
+	// 获取当前坐标cell上的租金差距。
+	public float getRentGap(Grid2DPosition pos);
+	
+	// 获取区域平均地租。
+	public float getACR();
+
+	// 根据租金差距，选择需要翻建的地产单元坐标。
+	public List&lt;Grid2DPosition&gt; getNeedInvestedPUPositions(float threshold);
+	
+	// 每周期执行的更新操作。主要步骤如下：
+	//   1. 地产单元衰败。
+	//   2. 业主翻新房屋。
+	// 在接下来的操作中，Developer还将进一步的对房地产进行翻建。
+	// 这三个步骤合在一起，共同构成一个完整的衰败-翻建的执行周期。
+	public void update();
+}</pre></td></tr>
+		<tr><th>备注</th><td><p>无。</p></td></tr>
+
+		<tr><td colspan="2" style="height: 5px; padding: 0px; margin: 0px;"></td></tr>
+
+		<tr><th>类名</th><td><pre class="brush:java; gutter: false">class Developer</pre></td></tr>
+		<tr><th>描述</th><td><p>开发商智能体。</p></td></tr>
+		<tr><th>定义</th>
+		<td><pre class="brush: java; gutter: false">
+public class Developer {
+	
+	private ResearchArea area;
+	private RentGapModelSwarm model;
+	
+	// 构造Developer，与研究区和Model Swarm相关联。
+	public Developer(ResearchArea area, RentGapModelSwarm model)；
+
+	// 对满足条件的房屋执行翻建操作。
+	// 具体算法如下：
+	//   1. 获取所有租金差距大于阈值的单元，构成候选单元队列。
+	//   2. 选取翻建成本小于开发商剩余资金的房地产单元，构成候选单元队列。
+	//   3. 如果队列为空，那么结束算法。
+	//   4. 如果队列不为空，随机挑选一个单元，执行翻建。
+	//   5. 将翻建后的单元从候选队列中移除，将开发商的剩余资金减去翻建成本，作为新的剩余资金。
+	//   6. 如果队列为空，那么结束算法，否则，重复执行步骤2。
+	public void update();
+}</pre></td></tr>
+		<tr><th>备注</th><td><p>无。</p></td></tr>
+
+		<tr><td colspan="2" style="height: 5px; padding: 0px; margin: 0px;"></td></tr>
+
+		<tr><th>类名</th><td><pre class="brush:java; gutter: false">class RentGapModelSwarm</pre></td></tr>
+		<tr><th>描述</th><td><p>Model Swarm。Model Swarm为多智能体的执行提供驱动。</p></td></tr>
+		<tr><th>定义</th>
+		<td><pre class="brush: java; gutter: false">
+public class RentGapModelSwarm extends SwarmImpl {
+	// 智能体的行为调度。这一部分参见Swarm的中文文档。
+	public ActionGroup modelActions;
+	public Schedule modelSchedule;
+	
+	// 智能体和环境。
+	public Developer developer;
+	public ResearchArea area;
+	
+	// 实验参数。尽管一部分参数需要归属智能体，但是为了交互和交叉访问更加方便，因而放在Model Swarm中。
+	public float developerCapital;				// 开发商持有资金量
+	public float maintainceThreshold;			// 租金差距阈值
+	public int worldSize;						// 研究区大小
+	public float constructionCost;				// 原始构建成本C0
+	public float neighbourRadius;				// 邻里半径
+	public DistributedZone potentialRentGen;	// 潜在地租表面分布生成工具
+
+	// 初始化参数。
+	public RentGapModelSwarm(Zone zone);
+	
+	// 创建多智能体的实例
+	public Object buildObjects();
+	// 将智能体的行为调度注册到Swarm中。
+	public Object buildActions();
+	
+	public Activity activateIn(Swarm swarmContext);
+}</pre></td></tr>
+		<tr><th>备注</th><td><p>Model Swarm不执行具体的逻辑。它只有两个用途，即负责多智能体行为的调度，以及为保存模型的公共参数。</p></td></tr>
+		
+		<tr><td colspan="2" style="height: 5px; padding: 0px; margin: 0px;"></td></tr>
+
+		<tr><th>类名</th><td><pre class="brush:java; gutter: false">class RentGapBatchSwarm</pre></td></tr>
+		<tr><th>描述</th><td><p>Batch Swarm。该Swarm并不真正的执行批量操作，而是负责初始化Model Swarm用。</p></td></tr>
+		<tr><th>定义</th>
+		<td><pre class="brush: java; gutter: false">
+public class RentGapBatchSwarm extends SwarmImpl {
+	public ExperimentRecorder recorder;
+	public String expName;
+	
+	public ActionGroup batchActions;
+	public Schedule outputSchedule;
+	public Schedule stoppingSchedule;
+	
+	public RentGapModelSwarm model;
+	
+	// 运行次数
+	public int stopTime;
+	
+	// 初始化实验
+	public RentGapBatchSwarm(Zone aZone, ExperimentRecorder recorder, String expName);
+	
+	// 初始化Model Swarm，并组织调度
+	public Object buildObjects();
+	public Object buildActions();
+	
+	public Activity activateIn( Swarm swarmContext );
+	public Object go();
+
+	public Object stopRunning();
+}
+</pre></td></tr>
+		<tr><th>备注</th><td><p>Batch Swarm和Model Swarm基本只承担保存参数和调度的责任，具体的用法，参见Swarm中文文档。</p></td></tr>
+
+		
+		<tr><td colspan="2" style="height: 5px; padding: 0px; margin: 0px;"></td></tr>
+
+		<tr><th>类名</th><td><pre class="brush:java; gutter: false">class StartRentGap</pre></td></tr>
+		<tr><th>描述</th><td><p>函数入口，并调用Batch Swarm，实现批量实验</p></td></tr>
+		<tr><th>定义</th>
+		<td><pre class="brush: java; gutter: false">
+public class StartRentGap {
+	// 程序的入口函数，调用批量实验函数完成实验内容。
+	public static void main(String[] args);
+	
+	// 不同租金差距阈值下的批量实验。
+	public static void GapThresholdExperiment(
+		float minGap,		// 起始阈值
+		float step,			// 步进阈值
+		int batchNumber,	// 实验次数
+		float devCap		// 开发者资金量
+		);
+
+	// 不同开发者资金量下的批量实验
+	public static void DeveloperCapitalExperiment(
+		float minCap,	// 起始资金量
+		float step,		// 步进值
+		int batchNumber	// 实验次数
+		);
+	
+	// 不同邻里半径的批量实验
+	public static void NeighbourRadiusExperiment(
+			float minRadius,	// 最小半径	
+			float step,			// 步进值
+			int batchNumber,	// 实验次数
+			int stopTime		// 截止周期数
+			);
+
+	// 不同潜在地租下的批量试验（同质）
+	public static void PotentialRentExperiment(
+		float minPR,	// 最少潜在地租
+		float step,		// 步进值
+		int batchNumber	// 实验次数
+		);
+
+	// 潜在地租不同均值下的批量实验（异质）
+	public static void MultiDistribution_Average(
+		float minAvg,			// 起始均值
+		float step,				// 步进值
+		int batchNumber,		// 实验批数
+		int innerBatchNumber	// 每批实验次数
+		)
+
+	// 潜在地租不同相关长度下的批量实验（异质）
+	public static void MultiDistribution_T(
+		float minT,				// 起始相关长度
+		float step,				// 步进值
+		int batchNumber,		// 实验批数
+		int innerBatchNumber	// 每批实验数
+		);
+
+	// 潜在地租不同相关标准差下的批量实验（异质）
+	public static void MultiDistribution_Stddev(
+		float minSD,			// 起始标准差
+		float step,				// 步进值
+		int batchNumber,		// 实验批数
+		int innerBatchNumber	// 每批实验数
+		);
+
+	// 样例实验，较为简单，可以用来作为撰写其他实验的参照。
+	public static void Test();
+}</pre></td></tr>
+		<tr><th>备注</th><td><p>无。</p></td></tr>
+	</table>
+	<h2>Appendix: FAQ</h2>
+	<h3>1. 如果模型不变，仅仅是修改实验参数，如何进行批量实验？</h3>
+	<p>StartRentGap类中的实验函数提供了很好的范例。</p><p>下面的例子举出了一个完整的实验及其相应的注释：</p>
+	<pre class="brush: java;">
+import mas.io.RecordBinaryWriter;
+import mas.math.random.ConstantRandomizer;
+import mas.math.random.GaussDistributedZone;
+import mas.math.random.NormalRandomizer;
+import mas.math.random.RandomizeDistributedZone;
+import swarm.Globals;
+
+public class StartRentGap {
+	public static void main(String[] args) {
+		// 初始化Swarm
+		Globals.env.initSwarm("rent gap simulation", "1.0", "wuye9036@gmail.com", args);
+		// 进行实验
+		DoExperiment();
+	}
+	
+	public static void DoExperiment(int batchNumber){
+		// 初始化SERF文件写入
+		RecordBinaryWriter rbw = new RecordBinaryWriter( "full_path.serf" );
+		ExperimentRecorder expRec = new ExperimentRecorder(rbw);
+		
+		// 初始化批量试验
+		expRec.beginBatch("实验名称");
+
+		// 设置实验参数
+		RentGapBatchSwarm topLevelSwarm = new RentGapBatchSwarm(Globals.env.globalZone, expRec, "Rent Gap Threshold: " + gap);
+		
+		// 块中为一次实验的过程。可以通过循环的方式执行多次实验。	
+		{
+			//设置实验参数
+			topLevelSwarm.stopTime = 20000;
+			topLevelSwarm.model.maintainceThreshold = 0.8f;
+			topLevelSwarm.model.developerCapital = 12000;
+			topLevelSwarm.model.snapFrequency = 10;
+		
+			// 构造ModelSwarm
+			topLevelSwarm.buildObjects();
+			topLevelSwarm.buildActions();
+		
+			// 运行仿真
+			topLevelSwarm.activateIn(null);
+			topLevelSwarm.go();
+			topLevelSwarm.drop();
+		}
+
+		// 结束实验
+		expRec.endBatch();
+	}
+}
+	</pre>
+	<h3>2. 如何将新的模型得出的实验数据正确的写入到文件中？</h3>
+	<p>不同模型下，所需要记录的数据有所不同。此时需要根据数据记录的需要，编写新的ExperimentRecorder来记录实验数据。一个完整的ExperimentRecorder如下所示：</p>
+	<pre class="brush: java">
+import java.io.*;
+import java.util.*;
+import java.util.ArrayList;
+import mas.io.RecordBinaryWriter;
+import mas.io.RecordItemDataType;
+import mas.io.RecordItemFormatDescription;
+import mas.io.RecordItemIOType;
+import mas.io.RecordItemDataDimension;
+import mas.math.vector.Grid2DPosition;
+
+public class ExperimentRecorder {
+	// 文件记录工具所关联的模型
+	public RentGapModelSwarm model;
+	// SERF输出类
+	private RecordBinaryWriter rbw;
+	// 记录周期数
+	int timeStamp;
+
+	// 初始化记录组件
+	public ExperimentRecorder( RecordBinaryWriter rbw){
+		this.rbw = rbw;
+	}
+	
+	// 开始执行批量实验。在批量实验之前，需要将数据格式写入到文件中。
+	public void beginBatch(String batchName){
+		// 调用
+		rbw.beginBatch(batchName);
+		
+		// 创建输出数据格式的数组
+		ArrayList&lt;RecordItemFormatDescription&gt; itemFmts = new ArrayList&lt;RecordItemFormatDescription&gt;();
+		
+		// 指定非时间序列的数据格式
+		
+		// 一个名为"Parameter A"的，非时序的浮点数据。
+		itemFmts.add(RecordItemFormatDescription.create(RecordItemIOType.input, RecordItemDataDimension.scalar, "Parameter A", RecordItemDataType._float, false, null));
+		// 一个名为"Parameter B"的，非时序的浮点矩阵。
+		itemFmts.add(RecordItemFormatDescription.create(RecordItemIOType.input, RecordItemDataDimension._2D, "Parameter B", RecordItemDataType._float, false, snapSize));
+		
+		// 指定时间序列数据格式（注意，一定要在非时间序列的数据格式之后）
+
+		// 时序的浮点数据
+		itemFmts.add(RecordItemFormatDescription.create(RecordItemIOType.output, RecordItemDataDimension.scalar, "Time Series Value", RecordItemDataType._float, true, null));
+		// 时序的浮点矩阵
+		itemFmts.add(RecordItemFormatDescription.create(RecordItemIOType.output, RecordItemDataDimension._2D, "Time Series Matrix", RecordItemDataType._float, true, arraySize));
+		
+		// 将数据格式写入文件中。
+		rbw.writeRecordItemFormatArray(itemFmts.toArray(new RecordItemFormatDescription[0]));
+	}
+	
+	// 批量实验结束。
+	public void endBatch(){
+		rbw.endBatch();
+	}
+	
+	// 单次实验开始，记录非时序的数据。
+	public void beginExperiment(RentGapModelSwarm model, String experimentName){
+		rbw.beginExperiment(experimentName);
+		this.model = model;
+		timeStamp = 0;
+		
+		// 将整个实验期间保持不变的参数（非时序数据）写入到文件中。注意，必须和数据对应格式的声明顺序保持一致。
+		rbw.beginNonTimeSeriesData();
+		
+		// 示例：写入标量数值
+		rbw.writeFloat(model.constructionCost);
+
+		// 示例：写入一个浮点的二维矩阵。
+		for( int ix = 0; ix < model.worldSize; ++ix ){
+			for( int iy = 0; iy < model.worldSize; ++iy ){
+				rbw.writeFloat( 0.0f );
+			}
+		}
+		
+		rbw.endNonTimeSeriesData();
+	}
+	
+	// 实验结束。
+	public void endExperiment(){
+		rbw.endExperiment();
+	}
+	
+	// 在update方法中，将时序数据写入。
+	public void update()
+	{
+		try {
+			// 读取模型的序数据，并写入到文件中。两个参数分别为当前的时间戳，和数据在时序格式当中的序号。例如，这里的0指参数"Time Series Value"
+			rbw.beginTimeStamp(timeStamp, 0);
+			rbw.writeFloat(model.area.getACR());
+			rbw.endTimeStamp();
+			
+			// 同样的，写入时序矩阵。
+			rbw.beginTimeStamp(timeStamp, 1);
+			for(int ix = 0; ix < model.area.width; ++ix){
+				for(int iy = 0; iy < model.area.height; ++iy){
+					rbw.writeFloat(model.area.getPropertyUnit(ix, iy).capitalRent);
+				}
+			}
+			rbw.endTimeStamp();
+			
+			// 更新周期数
+			++timeStamp;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+}
+	</pre>
+	<p>在ExperimentRecorder构造好之后，应当遵循以下的调用顺序：</p>
+	<pre class="brush: java">
+rbw = new RecordBinaryWriter( "file_name.serf" ); // 创建文件写入
+er = new ExperiementRecorder( rbw ); // 创建特定实验的写入工具
+
+er.beginBatch( "批实验名称" );
+
+
+// 创建于初始化swarm
+// 例如：
+//   swarm = new ExperimentSwarm();
+// 然后将er的update注册到swarm的schedule中。（参见swarm的代码）
+er.beginExperiment( "单次实验名称1", swarm ); // 将swarm和recorder关联起来，recorder才可以写入正确的数据。
+// 运行实验。
+// 实验过程中，Swarm框架会调用注册好的recorder的update方法，update方法会读取swarm的数据并写入文件中。
+er.endExperiment(); // 实验结束
+
+// 其他实验，同第一个实验。
+
+er.endBatch();	// 结束批量实验
+	</pre>
+	<p>这样，便可以获得一个完整的实验结果的文件了。</p>
+	<h3>3. 现有的模型是如何运行的？</h3>
+	<p>下图为模型运行的时序图：</p>
+	<img alt="Missing Image File" src="Timeseries.png" />
+	<p>从图中可以看出，程序将衰败、房东的修理和房地产商的重建分为三个阶段，在一个周期中先后执行。然后重复执行多个周期，直到得到我们需要的数据。</p>
+	<h3>4. 如何在现有程序的基础上进行扩展工作？</h3>
+	<p>扩展的方法和复杂程度视模型修改状况而定。简单来说可以概括为以下步骤：</p>
+	<pre class="brush: text">
+根据智能体的需求，修改环境，以保存智能体所需要的全局数据。
+新建立一个智能体类。此处，可以以Developer为样例构建。
+修改已有的智能体代码，与新的智能体协作。
+在Model Swarm中添加新的智能体所需要的参数，为智能体提供新的参数来源。
+在Model Swarm中，增加新智能体的初始化方法，并为新智能体安排合适的调度。
+如果保存的数据需要修改，那么需要更改Experiment Recorder来生成新的数据（参见FAQ）
+在StartRentGap中，补充新的实验函数，并在Main函数中调用，并进行批量试验。</pre>
+</body>
+</html>

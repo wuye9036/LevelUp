@@ -1,0 +1,418 @@
+<ui version="4.0" >
+ <class>mainWindow</class>
+ <widget class="QMainWindow" name="mainWindow" >
+  <property name="enabled" >
+   <bool>true</bool>
+  </property>
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>574</width>
+    <height>505</height>
+   </rect>
+  </property>
+  <property name="font" >
+   <font>
+    <family>Tahoma</family>
+    <pointsize>12</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle" >
+   <string>Geographical Factor Evaluator</string>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <layout class="QVBoxLayout" >
+    <item>
+     <widget class="QLabel" name="label" >
+      <property name="text" >
+       <string/>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>574</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <widget class="QMenu" name="menu" >
+    <property name="font" >
+     <font>
+      <family>Tahoma</family>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="title" >
+     <string>File(&amp;F)</string>
+    </property>
+    <addaction name="actionNew" />
+    <addaction name="separator" />
+    <addaction name="actionOpen" />
+    <addaction name="separator" />
+    <addaction name="actionSave" />
+    <addaction name="actionSaveAs" />
+   </widget>
+   <widget class="QMenu" name="menuView" >
+    <property name="font" >
+     <font>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="title" >
+     <string>Tools(&amp;T)</string>
+    </property>
+    <addaction name="actionImport" />
+    <addaction name="actionTreeRenderer" />
+    <addaction name="actionAutoExp" />
+   </widget>
+   <widget class="QMenu" name="menuFuzzy_GIS_Modeling" >
+    <property name="title" >
+     <string>Fuzzy GIS Modeling(&amp;M)</string>
+    </property>
+    <addaction name="actionSetLingVal" />
+    <addaction name="actionConCrtTrees" />
+    <addaction name="actionBldRegPg" />
+    <addaction name="actionCompCrtProx" />
+   </widget>
+   <widget class="QMenu" name="menuCriteria_Weight_Dertermine" >
+    <property name="title" >
+     <string>Criterion(&amp;C)</string>
+    </property>
+    <addaction name="actionAHPMatCon" />
+    <addaction name="actionRandom_Matrix" />
+    <addaction name="actionSensAnalyst" />
+    <addaction name="actionWPMSensAnalyst" />
+   </widget>
+   <widget class="QMenu" name="menuNEG_Simulation" >
+    <property name="title" >
+     <string>NEG Simulation(&amp;N)</string>
+    </property>
+    <addaction name="actionGenDistMat" />
+    <addaction name="actionSimulation" />
+   </widget>
+   <addaction name="menu" />
+   <addaction name="menuFuzzy_GIS_Modeling" />
+   <addaction name="menuCriteria_Weight_Dertermine" />
+   <addaction name="menuNEG_Simulation" />
+   <addaction name="menuView" />
+  </widget>
+  <widget class="QStatusBar" name="statusbar" >
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+  </widget>
+  <action name="actionOpen" >
+   <property name="text" >
+    <string>Open Project...</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+    </font>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionAHP" >
+   <property name="text" >
+    <string>AHP Analyser</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionLingTbl" >
+   <property name="text" >
+    <string>Linguistic Table Editor</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionLocGen" >
+   <property name="text" >
+    <string>Location Generator</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionSave" >
+   <property name="text" >
+    <string>Save</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+    </font>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionSaveAs" >
+   <property name="text" >
+    <string>Save As...</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionClearExistFeatcls" >
+   <property name="text" >
+    <string>Clear Exist Feature Classes</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionNew" >
+   <property name="text" >
+    <string>New Project...</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionDistMatGen" >
+   <property name="text" >
+    <string>Distance Matrix Generator</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionProxAnalyst" >
+   <property name="text" >
+    <string>Proximity Analyst</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionImport" >
+   <property name="text" >
+    <string>Import Result to Feature Class</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionSensViewer" >
+   <property name="text" >
+    <string>Sensitive Viewer</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionClipFilter" >
+   <property name="text" >
+    <string>Clip Filter</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionShowAltRank" >
+   <property name="text" >
+    <string>Show Alternatives Rank</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionShowAbsChg" >
+   <property name="text" >
+    <string>Show Absolute Change</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionShowRelChg" >
+   <property name="text" >
+    <string>Show Percent Change</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionShowSensList" >
+   <property name="text" >
+    <string>Sensitive List</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionShowThVal" >
+   <property name="text" >
+    <string>Show Threshold Values</string>
+   </property>
+  </action>
+  <action name="actionShowCrtDegs" >
+   <property name="text" >
+    <string>Show Critically Degrees</string>
+   </property>
+  </action>
+  <action name="actionShowSens" >
+   <property name="text" >
+    <string>Show Sensitivity Coefficients</string>
+   </property>
+  </action>
+  <action name="actionConCrtTrees" >
+   <property name="text" >
+    <string>Hierarchical Network</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionSetLingVal" >
+   <property name="text" >
+    <string>Set Linguistic Values</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionBldRegPg" >
+   <property name="text" >
+    <string>Geographical Trisella</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionCompCrtProx" >
+   <property name="text" >
+    <string>Compute Criteria Proximity</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionAHPMatCon" >
+   <property name="text" >
+    <string>Satty Matrix</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionSensAnalyst" >
+   <property name="text" >
+    <string>WSM Sensitive Analysis</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionRandom_Matrix" >
+   <property name="text" >
+    <string>Random Matrix</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionAutoExp" >
+   <property name="text" >
+    <string>Auto Experience</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Tahoma</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionWPMSensAnalyst" >
+   <property name="text" >
+    <string>WPM Sensitive Analysis</string>
+   </property>
+  </action>
+  <action name="actionTreeRenderer" >
+   <property name="text" >
+    <string>Hierarchical Network Viewer</string>
+   </property>
+  </action>
+  <action name="actionGenDistMat" >
+   <property name="text" >
+    <string>Generate Distance Matrix</string>
+   </property>
+  </action>
+  <action name="actionSimulation" >
+   <property name="text" >
+    <string>Simulation</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
